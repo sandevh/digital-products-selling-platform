@@ -6,11 +6,12 @@ import { useRouter } from "next/navigation";
 
 const Dashboard = () => {
   const router = useRouter();
-  const { user } = useUser();
+  const { user, setUser } = useUser();
 
   const handleLogOut = async () => {
     try {
       await fetch("/api/auth/logout", { method: "GET" });
+      setUser(null);
       router.push("/");
     } catch (error) {
       console.error("Logout failed:", error);
