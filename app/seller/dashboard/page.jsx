@@ -1,10 +1,12 @@
 "use client";
 
+import { useUser } from "@/context/UserContext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const Dashboard = () => {
   const router = useRouter();
+  const { user } = useUser();
 
   const handleLogOut = async () => {
     try {
@@ -17,6 +19,10 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
+      <h2 className="text-4xl font-extrabold">
+        Welcome <span>{user.username}</span>
+      </h2>
+
       <header className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold">Seller Dashboard</h1>
         <button
