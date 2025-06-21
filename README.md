@@ -1,7 +1,7 @@
 ## Full Setup Guide
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### clone the repo
-[git clone https://github.com/your-username/your-repo.git](https://github.com/sandevh/digital-products-selling-platform)
+[https://github.com/sandevh/digital-products-selling-platform](https://github.com/sandevh/digital-products-selling-platform)
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### install dependencies 
 npm install
