@@ -1,27 +1,27 @@
 ## Full Setup Guide
 
-# clone the repo
+#### clone the repo
 git clone https://github.com/your-username/your-repo.git
 
-# install dependencies 
+#### install dependencies 
 npm install
 
-# create a .env and include DATABASE_URL in it to contain PostgreSQL connection string
+#### create a .env and include DATABASE_URL in it to contain PostgreSQL connection string
 DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE_NAME"
 replace USER, PASSWORD and DATABASE_NAME
 
-# create a .env.local and include JWT_SECRET
+#### create a .env.local and include JWT_SECRET
 JWT_SECRET=your_secret_key
 
-# prisma setup (open a terminal and run below commands)
+#### prisma setup (open a terminal and run below commands)
 npx prisma migrate deploy
 npx prisma generate
 
-# once all done start the development server 
+#### once all done start the development server 
 npm run dev
 
-# access application using 
+#### access application using 
 http://localhost:3000
 
-# to explore the database run below command in another terminal 
+#### to explore the database run below command in another terminal 
 npx prisma studio
