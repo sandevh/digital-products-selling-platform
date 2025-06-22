@@ -21,7 +21,13 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <h2 className="text-4xl font-extrabold">
-        Welcome <span>{user.username}</span>
+        {user ? (
+          <>
+            Welcome <span>{user.username}</span>
+          </>
+        ) : (
+          <span>Loading...</span>
+        )}
       </h2>
 
       <header className="flex justify-between items-center mb-8">
