@@ -1,10 +1,14 @@
 "use client";
 
+import { useUser } from "@/context/UserContext";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
+  const { user, loading } = useUser();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchPublicProducts = async () => {
@@ -16,9 +20,22 @@ const Home = () => {
         console.error("Failed to fetch public products:", err);
       }
     };
-
     fetchPublicProducts();
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      router.push("/seller/dashboard");
+    }
+  }, [user]);
+
+  if (loading) {
+    return (
+      <div className="w-full h-full bg-black text-white font-bold text-9xl">
+        Home Splash...
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white px-6 py-10 flex flex-col items-center">

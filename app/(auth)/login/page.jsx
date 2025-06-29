@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useUser } from "@/context/UserContext";
 
 const LoginPage = () => {
   const router = useRouter();
+  const { fetchUser } = useUser();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -37,6 +39,7 @@ const LoginPage = () => {
       if (!response.ok) {
         setMessage(data.error || "Something went wrong");
       } else {
+        await fetchUser();
         setMessage("Login successful! Redirecting to Dashboard...");
         router.push("/seller/dashboard");
       }
