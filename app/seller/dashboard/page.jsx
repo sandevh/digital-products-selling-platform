@@ -21,7 +21,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (!loading && !user) {
-      // router.push("/");
+      router.push("/");
     }
   }, [loading, user, router]);
 
@@ -43,7 +43,7 @@ const Dashboard = () => {
         <h1 className="text-3xl font-bold">Seller Dashboard</h1>
         <button
           onClick={handleLogOut}
-          className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+          className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition hover:cursor-pointer"
         >
           Logout
         </button>
@@ -55,6 +55,12 @@ const Dashboard = () => {
           className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
         >
           Manage Products
+        </Link>
+        <Link
+          href="/seller/dashboard/orders"
+          className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+        >
+          View Orders
         </Link>
       </nav>
     </div>

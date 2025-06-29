@@ -14,29 +14,44 @@ datasource db {
 }
 
 model Seller {
-  id        String    @id @default(uuid()) 
-  email     String    @unique 
-  username  String    @unique 
-  password  String    
-  role      String    @default("seller")
-  store     Store?
+  id       String @id @default(uuid())
+  email    String @unique
+  username String @unique
+  password String
+  role     String @default("seller")
+  store    Store?
+  Order    Order[]
 }
 
 model Store {
-  id          String    @id @default(uuid()) 
-  sellerId    String    @unique 
-  name        String    
+  id          String    @id @default(uuid())
+  sellerId    String    @unique
+  name        String
   slug        String    @unique
-  description String?   
-  seller      Seller    @relation(fields: [sellerId], references: [id]) 
-  products    Product[] 
+  description String?
+  seller      Seller    @relation(fields: [sellerId], references: [id])
+  products    Product[]
+  Order       Order[]
 }
 
 model Product {
-  id          String       @id @default(uuid()) 
-  storeId     String       
-  title       String       
-  description String?      
-  price       Float        
-  store       Store        @relation(fields: [storeId], references: [id]) 
+  id          String  @id @default(uuid())
+  storeId     String
+  title       String
+  description String?
+  price       Float
+  store       Store   @relation(fields: [storeId], references: [id])
+  Order       Order[]
+}
+
+model Order {
+  id         String   @id @default(uuid())
+  productId  String
+  storeId    String
+  sellerId   String
+  buyerEmail String
+  createdAt  DateTime @default(now())
+  product    Product  @relation(fields: [productId], references: [id])
+  store      Store    @relation(fields: [storeId], references: [id])
+  seller     Seller   @relation(fields: [sellerId], references: [id])
 }

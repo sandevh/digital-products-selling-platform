@@ -6,6 +6,7 @@ const ProductPage = ({ params }) => {
   const { storeslug, productId } = use(params);
   const [product, setProduct] = useState(null);
   const [error, setError] = useState(null);
+  const [buyerEmail, setBuyerEmail] = useState("sample@buyer.com");
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -20,8 +21,8 @@ const ProductPage = ({ params }) => {
         } else {
           setProduct(data.product);
         }
-      } catch (err) {
-        console.error("Error fetching product:", err);
+      } catch (error) {
+        console.error("Error fetching product:", error);
         setError("An error occurred");
       }
     };
@@ -30,6 +31,24 @@ const ProductPage = ({ params }) => {
       fetchProduct();
     }
   }, [storeslug, productId]);
+
+  const buyProduct = async () => {
+    try {
+      const response = await fetch(`/api/checkout/${productId}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          buyerEmail: buyerEmail,
+        }),
+      });
+      const data = await response.json();
+      if (data.success) {
+        alert("purchase successfull!!!");
+      }
+    } catch {
+      console.error("Error purchasing product: ", error);
+    }
+  };
 
   return (
     <div className="min-h-screen px-6 py-10 bg-white">
@@ -48,6 +67,12 @@ const ProductPage = ({ params }) => {
           <p className="mt-4 text-blue-600 font-semibold text-lg">
             ${product.price}
           </p>
+          <button
+            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-2xl shadow-md transition duration-300 ease-in-out hover:cursor-pointer"
+            onClick={buyProduct}
+          >
+            Buy Now
+          </button>
         </div>
       )}
     </div>

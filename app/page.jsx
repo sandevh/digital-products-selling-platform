@@ -16,8 +16,8 @@ const Home = () => {
         const res = await fetch("/api/store");
         const data = await res.json();
         setProducts(data.products || []);
-      } catch (err) {
-        console.error("Failed to fetch public products:", err);
+      } catch (error) {
+        console.error("Failed to fetch public products:", error);
       }
     };
     fetchPublicProducts();
