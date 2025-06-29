@@ -35,8 +35,6 @@ export async function GET(request) {
       },
       orderBy: { createdAt: "desc" },
     });
-    console.log(orders);
-
     return NextResponse.json({ orders }, { status: 200 });
 
   } catch (error) {

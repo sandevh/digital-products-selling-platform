@@ -30,7 +30,14 @@ export async function POST(request, { params }) {
       }
     });
 
-    return NextResponse.json({ success: true, order }, { status: 201 });
+    return NextResponse.json({
+      success: true, "order": {
+        "id": order.id,
+        "productId": order.productId,
+        "buyerEmail": order.buyerEmail,
+        "createdAt": order.createdAt
+      }
+    }, { status: 201 });
 
   } catch (error) {
     console.error("Error purchasing product: ", error);

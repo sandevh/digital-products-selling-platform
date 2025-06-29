@@ -18,7 +18,6 @@ const OrderPage = () => {
       const response = await fetch("/api/seller/orders");
       const data = await response.json();
       setOrders(data?.orders || []);
-      console.log(data);
     } catch (error) {
       console.error("Error fetching orders: ", error);
       setError("Failed to load orders.");
@@ -53,10 +52,10 @@ const OrderPage = () => {
           href="/seller/dashboard"
           className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
         >
-          Go to Dashboard
+          Dashboard
         </Link>
       </header>
-      <div className="flex">
+      <div>
         {ordersLoading ? (
           <p className="mt-4 text-gray-600">Loading orders...</p>
         ) : orders.length === 0 ? (
